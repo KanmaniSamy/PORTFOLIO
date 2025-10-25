@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanmani M |  ECE.Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #7c4dff;
+            --secondary: #b388ff;
+            --accent: #ff80ab;
+            --dark: #121212;
+            --darker: #0a0a0a;
+            --light: #f5f5f5;
+            --gray: #757575;
+            --success: #69f0ae;
+            --warning: #ffe082;
+            --danger: #ff5252;
+            --info: #40c4ff;
+            --card-bg: #1e1e1e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(124, 77, 255, 0.1);
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--light);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+            position: relative;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 77, 255, 0.3);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(124, 77, 255, 0.4);
+        }
+
+        .btn-download i {
+            margin-right: 8px;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(124, 77, 255, 0.1) 0%, rgba(18, 18, 18, 0) 70%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--secondary);
+            max-width: 600px;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-image {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            box-shadow: 0 20px 50px rgba(124, 77, 255, 0.3);
+            transition: all 0.5s ease;
+        }
+
+        .hero-image:hover .profile-image {
+            transform: scale(1.05);
+            box-shadow: 0 25px 60px rgba(124, 77, 255, 0.4);
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(124, 77, 255, 0.1);
+            margin-right: 15px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transform: translateY(-5px);
+            color: white;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 5px 20px rgba(124, 77, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(124, 77, 255, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: transparent;
+        }
+
+        .btn-resume {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--success), #00e676);
+            color: var(--darker);
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(105, 240, 174, 0.3);
+        }
+
+        .btn-resume:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(105, 240, 174, 0.4);
+        }
+
+        .btn-resume i {
+            margin-right: 8px;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--light);
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .personal-traits {
+            margin-top: 30px;
+        }
+
+        .personal-traits h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .traits-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .trait-item {
+            padding: 8px 15px;
+            background-color: rgba(124, 77, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .trait-item:hover {
+            background-color: rgba(124, 77, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(124, 77, 255, 0.1);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(124, 77, 255, 0.3);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-category h3 i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-item {
+            padding: 8px 15px;
+            background-color: rgba(124, 77, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background-color: rgba(124, 77, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Education Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: calc(50% + 30px);
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: calc(50% + 30px);
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transform: translateX(-50%);
+            z-index: 1;
+            box-shadow: 0 0 0 4px var(--dark), 0 0 0 6px var(--primary);
+        }
+
+        .timeline-content {
+            padding: 25px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(124, 77, 255, 0.1);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(124, 77, 255, 0.3);
+        }
+
+        .timeline-date {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+
+        .timeline-text {
+            color: var(--secondary);
+        }
+
+        /* Projects Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(124, 77, 255, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(124, 77, 255, 0.3);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .project-date {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .project-description {
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .project-tag {
+            padding: 5px 12px;
+            background-color: rgba(124, 77, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--secondary);
+            transition: all 0.3s ease;
+        }
+
+        .project-tag:hover {
+            background-color: rgba(124, 77, 255, 0.3);
+            color: var(--light);
+        }
+
+        /* Experience Section */
+        .experience-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .experience-item {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(124, 77, 255, 0.1);
+        }
+
+        .experience-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(124, 77, 255, 0.3);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .experience-date {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .experience-company {
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            color: var(--secondary);
+        }
+
+        .experience-company i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .experience-description {
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .experience-description p {
+            margin-bottom: 10px;
+        }
+
+        .experience-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .experience-skill {
+            padding: 5px 12px;
+            background-color: rgba(124, 77, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--secondary);
+            transition: all 0.3s ease;
+        }
+
+        .experience-skill:hover {
+            background-color: rgba(124, 77, 255, 0.3);
+            color: var(--light);
+        }
+
+        /* Publications Section */
+        .publications-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .publication-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(124, 77, 255, 0.1);
+        }
+
+        .publication-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(124, 77, 255, 0.3);
+        }
+
+        .publication-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .publication-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .publication-card:hover .publication-image img {
+            transform: scale(1.1);
+        }
+
+        .publication-content {
+            padding: 25px;
+        }
+
+        .publication-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .publication-date {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .publication-description {
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .publication-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .publication-tag {
+            padding: 5px 12px;
+            background-color: rgba(124, 77, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--secondary);
+            transition: all 0.3s ease;
+        }
+
+        .publication-tag:hover {
+            background-color: rgba(124, 77, 255, 0.3);
+            color: var(--light);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .contact-info p {
+            margin-bottom: 30px;
+            max-width: 400px;
+            color: var(--secondary);
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-item i {
+            width: 45px;
+            height: 45px;
+            background-color: rgba(124, 77, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover i {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(124, 77, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--light);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--light);
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background-color: rgba(124, 77, 255, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            padding: 50px 0 20px;
+            text-align: center;
+            border-top: 1px solid rgba(124, 77, 255, 0.1);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            gap: 15px;
+        }
+
+        .footer-links a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(124, 77, 255, 0.1);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .footer-social a:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transform: translateY(-5px);
+            color: white;
+        }
+
+        .copyright {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Floating Elements */
+        .floating {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            animation: float 8s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--darker);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.5s ease;
+                padding: 20px;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero-text, .hero-image {
+                flex: 100%;
+                padding-right: 0;
+                text-align: center;
+            }
+
+            .hero-text {
+                margin-bottom: 50px;
+            }
+
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .about-text, .about-image {
+                flex: 100%;
+                padding-right: 0;
+            }
+
+            .about-text {
+                margin-bottom: 50px;
+            }
+
+            .timeline::before {
+                left: 31px;
+            }
+
+            .timeline-item {
+                padding-left: 70px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+
+            .timeline-dot {
+                left: 31px;
+            }
+
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .btn, .btn-outline, .btn-resume {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-code"></i>Kanmani<span>M</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <a href="Kanmani_M_Resume (1).pdf" download class="btn-download">
+                        <i class="fas fa-download"></i> Resume
+                    </a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Hi, I'm Kanmani M</h1>
+                <p>Highly motivated and detail-driven Electronics and Communication Engineering professional seeking an entry-level position to leverage my technical skills and innovative projects in a dynamic team environment.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/kanmani-m-5334932b8" target="_blank" class="tooltip">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://leetcode.com/u/S3UFEUCTke/" target="_blank" class="tooltip">
+                        <i class="fas fa-code"></i>
+                    </a>
+                    <a href="https://github.com/KanmaniSamy/" target="_blank" class="tooltip">
+                        <i class="fas fa-code"></i>
+                    </a>
+                    <a href="mailto:kanmanisamy1305@gmail.com" class="tooltip">
+                        <i class="far fa-envelope"></i>
+                    </a>
+                    <a href="tel:9489271025" class="tooltip">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn">Get In Touch</a>
+                    <a href="#projects" class="btn btn-outline">View My Work</a>
+                    <a href="Kanmani_M (1) (1).pdf" download class="btn btn-resume">
+                        <i class="fas fa-download"></i> Download Resume
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                
+                <img src="Photograph.jpg.lnk" alt="Profile Picture">
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Electronics and Communication Engineer</h3>
+                    <p>I am a passionate and dedicated Electronics and Communication Engineering student with a strong foundation in programming, networking, and web development. My academic journey at Velammal College of Engineering and Technology has equipped me with technical expertise and problem-solving skills that I'm eager to apply in a professional setting.</p>
+                    <p>With a CGPA of 8.13 (up to 6th semester), I have consistently demonstrated my ability to excel in challenging environments. My projects showcase my ability to combine technical knowledge with practical applications in IoT, embedded systems, and automation.</p>
+                    <div class="personal-traits">
+                        <h4>Personal Traits:</h4>
+                        <div class="traits-list">
+                            <span class="trait-item">Problem solving</span>
+                            <span class="trait-item">Quick learner</span>
+                            <span class="trait-item">Positive Influencer</span>
+                            <span class="trait-item">Good listener</span>
+                            <span class="trait-item">Resilience</span>
+                            <span class="trait-item">Adaptability</span>
+                            <span class="trait-item">Self-motivated</span>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Skills</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop-code"></i>Programming Languages</h3>
+                    <div class="skills-list">
+                        <span class="skill-item">Java</span>
+                        <span class="skill-item">C</span>
+                        <span class="skill-item">Python</span>
+                        
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-globe"></i>Web Development</h3>
+                    <div class="skills-list">
+                        <span class="skill-item">HTML5</span>
+                        <span class="skill-item">CSS3</span>
+                        
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i>Databases & Tools</h3>
+                    <div class="skills-list">
+                        <span class="skill-item">SQL</span>
+                        <span class="skill-item">Microsoft Excel</span>
+                        <span class="skill-item">Microsoft Word</span>
+                        <span class="skill-item">Microsoft Powerpoint</span>
+                        <span class="skill-item">MATLAB</span>
+                        
+
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-network-wired"></i>Networking Basics </h3>
+                    <div class="skills-list">
+                        <span class="skill-item">TCP/IP</span>
+                        <span class="skill-item">OSI Model</span>
+                        <span class="skill-item">DNS</span>
+                        <span class="skill-item">Firewall Concepts</span>
+                        <span class="skill-item">Routing & Switching</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i>Operating Systems & Tools</h3>
+                    <div class="skills-list">
+                        <span class="skill-item">Linux</span>
+                        <span class="skill-item">Putty</span>
+                        <span class="skill-item">WinSCP</span>
+                        
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education" id="education">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 - 2026</div>
+                        <h3 class="timeline-title">B.E. Electronics and Communication Engineering</h3>
+                        <p class="timeline-text">Velammal College of Engineering and Technology, Madurai</p>
+                        <p class="timeline-text">CGPA: 8.13 (Up to 6th Semester)</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2019 - 2021</div>
+                        <h3 class="timeline-title">HSC</h3>
+                        <p class="timeline-text">The TVS School, Madurai</p>
+                        <p class="timeline-text">Percentage: 79.83%</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2019</div>
+                        <h3 class="timeline-title">SSLC</h3>
+                        <p class="timeline-text">CEOA Matriculation Higher Secondary School, Madurai</p>
+                        <p class="timeline-text">Percentage: 97.8%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Projects</h2>
+            </div>
+            <div class="projects-container">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Prothetic arm.jpg" alt="IoT-Enabled Prosthetic Arm">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">IoT-Enabled Prosthetic Arm</h3>
+                        <span class="project-date">2024</span>
+                        <p class="project-description">Developed a low-cost prosthetic arm using flex sensors and servo motors to provide precise finger movements, with IoT connectivity for real-time monitoring and control.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">IoT</span>
+                            <span class="project-tag">Arduino</span>
+                            <span class="project-tag">Embedded Systems</span>
+                            <span class="project-tag">Healthcare</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Smart-irrigation.jpg" alt="Irrigation Monitoring System">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Irrigation Monitoring System</h3>
+                        <span class="project-date">2023</span>
+                        <p class="project-description">Created a real-time irrigation monitoring system using sensors and IoT technology to track soil moisture and temperature for precise water management and optimized crop growth.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">IoT</span>
+                            <span class="project-tag">Sensors</span>
+                            <span class="project-tag">Agriculture</span>
+                            <span class="project-tag">Automation</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="arduinosys.jpg" alt="Arduino-Based Weather Monitoring System">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Arduino-Based Weather Monitoring System</h3>
+                        <span class="project-date">2022</span>
+                        <p class="project-description">Built an Arduino-based system that accurately tracks temperature and humidity in real time, providing valuable insights for weather forecasting and environmental monitoring.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Arduino</span>
+                            <span class="project-tag">Sensors</span>
+                            <span class="project-tag">Weather</span>
+                            <span class="project-tag">Data Collection</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section class="publications" id="publications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Publications</h2>
+            </div>
+            <div class="publications-container">
+                <div class="publication-card">
+                    <div class="publication-image">
+                        <img src="prosarm.jpg" alt="Prosthetic Arm Publication">
+                    </div>
+                    <div class="publication-content">
+                        <h3 class="publication-title">Prosthetic Arm Using IoT and Muscle Movement Control</h3>
+                        <span class="publication-date">2024</span>
+                        <p class="publication-description">Published in Electronic Wings Project Challenge, detailing the development of an IoT-enabled prosthetic arm with muscle movement control capabilities.</p>
+                        <div class="publication-tags">
+                            <span class="publication-tag">IoT</span>
+                            <span class="publication-tag">Prosthetics</span>
+                            <span class="publication-tag">Healthcare Tech</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="publication-card">
+                    <div class="publication-image">
+                        <img src="slotant.jpg" alt="Patch Antenna Publication">
+                    </div>
+                    <div class="publication-content">
+                        <h3 class="publication-title">Design and Optimization of Different Shape Slotted Patch Antenna for IoT Applications</h3>
+                        <span class="publication-date">2025</span>
+                        <p class="publication-description">Submitted IEEE paper at SRM Institute of Science and Technology, Chennai, focusing on innovative antenna designs for IoT applications.</p>
+                        <div class="publication-tags">
+                            <span class="publication-tag">Antenna Design</span>
+                            <span class="publication-tag">IoT</span>
+                            <span class="publication-tag">Wireless Comm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Experience & Achievements</h2>
+            </div>
+            <div class="experience-container">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Intern at Rail Info Tech Services</h3>
+                        <span class="experience-date">Dec 2023 - Jan 2024</span>
+                    </div>
+                    <div class="experience-company">
+                        <i class="fas fa-map-marker-alt"></i>Madurai
+                    </div>
+                    <div class="experience-description">
+                        <p>Completed an intensive 2-week training program, gaining hands-on expertise in railway systems including:</p>
+                        <p>- Visualization of interlocking track systems and point changes</p>
+                        <p>- Signal Passed at Danger (SPAD) protocols</p>
+                        <p>- Signal Point Telephone (SPT) operations</p>
+                        <p>Additionally acquired knowledge about fire detection systems and cybersecurity concepts, enhancing understanding of safety and security protocols in railway infrastructure.</p>
+                    </div>
+                    <div class="experience-skills">
+                        <span class="experience-skill">Railway Systems</span>
+                        <span class="experience-skill">Safety Protocols</span>
+                        <span class="experience-skill">Cybersecurity</span>
+                        <span class="experience-skill">Technical Training</span>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Achievements</h3>
+                    </div>
+                    <div class="experience-description">
+                        <p><strong>Elite World Records</strong> - Participated in the "Coloring Simultaneously" competition at CEOA Matriculation Higher Secondary School, Madurai, showcasing teamwork and creativity.</p>
+                        <p><strong>TOEFL Junior Certification</strong> - Certified by the Voice Training and Research Institute, demonstrating English language proficiency at an international standard (CEFR Level B2).</p>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Workshops & Papers Presented</h3>
+                    </div>
+                    <div class="experience-description">
+                        <p><strong>Workshop on "RETRIC 5G"</strong> - Attended this workshop conducted by Velammal College of Engineering and Technology in September 2023, gaining insights into next-generation wireless technologies.</p>
+                        <p><strong>Paper on "Budget Friendly Jaundice Detection Kit"</strong> - Presented at Dr. Kalam Young Achiever award at Sethu Institute of Technology, Madurai (September 2024), focusing on affordable healthcare solutions.</p>
+                        <p><strong>Paper on "Municipal Waste Management Using Incineration Technique"</strong> - Presented at EARENDE1224 conducted by Thiagarajar College of Engineering, Madurai (February 2024), addressing environmental challenges.</p>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Certifications</h3>
+                    </div>
+                    <div class="experience-description">
+                        <ul style="list-style-type: none;">
+                            <li><i class="fas fa-certificate" style="color: var(--primary); margin-right: 10px;"></i> <strong>Infosys</strong> - "Introduction to Artificial Intelligence" (June 2025)</li>
+                            <li><i class="fas fa-certificate" style="color: var(--primary); margin-right: 10px;"></i> <strong>Infosys</strong> - "Introduction to UI/UX" (March 2025)</li>
+                            <li><i class="fas fa-certificate" style="color: var(--primary); margin-right: 10px;"></i> <strong>Novitech</strong> - "Data Analytics" (February-March 2025)</li>
+                            <li><i class="fas fa-certificate" style="color: var(--primary); margin-right: 10px;"></i> <strong>NPTEL (IISc Bangalore)</strong> - "Electronics Systems for Cancer Diagnosis" (July-October 2024)</li>
+                            <li><i class="fas fa-certificate" style="color: var(--primary); margin-right: 10px;"></i> <strong>NPTEL (IISc Bangalore)</strong> - "Introduction to Industry 4.0 and Industrial Internet of Things" (January-April 2024)</li>
+                            <li><i class="fas fa-certificate" style="color: var(--primary); margin-right: 10px;"></i> <strong>Microsoft</strong> - "Cyber Security" (October 2024)</li>
+                            <li><i class="fas fa-certificate" style="color: var(--primary); margin-right: 10px;"></i> <strong>NPTEL</strong> - "Cloud Computing" (July-October 2023)</li>
+                            <li><i class="fas fa-certificate" style="color: var(--primary); margin-right: 10px;"></i> <strong>EBSCO</strong> - "IEEE XPLORE" by Velammal College of Engineering and Technology (April 2024)</li>
+                            <li><i class="fas fa-certificate" style="color: var(--primary); margin-right: 10px;"></i> <strong>NPTEL (IISc Bangalore)</strong> - "Joy of Computing Using Python" (January-April 2023)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>I'm currently looking for new opportunities in Electronics and Communication Engineering. Whether you have a question about my projects, want to discuss potential collaborations, or just want to say hi, I'll do my best to get back to you!</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 9489271025</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>kanmanisamy1305@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>1580, TNHB Colony, Villapuram, Madurai</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/kanmani-m-5334932b8" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://leetcode.com/u/S3UFEUCTke/" target="_blank">
+                            <i class="fas fa-code"></i>
+                        </a>
+                        <a href="https://github.com/KanmaniSamy/" target="_blank">
+                    <i class="fas fa-code"></i>
+                          </a>
+
+                        <a href="mailto:kanmanisamy1305@gmail.com">
+                            <i class="far fa-envelope"></i>
+                        </a>
+                        <a href="tel:9489271025">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                    <a href="Kanmani_M (1) (1).pdf" download class="btn btn-resume" style="margin-top: 20px;">
+                        <i class="fas fa-download"></i> Download My Resume
+                    </a>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#education">Education</a>
+                <a href="#projects">Projects</a>
+                <a href="#publications">Publications</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/kanmani-m-5334932b8" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://leetcode.com/u/S3UFEUCTke/" target="_blank">
+                    <i class="fas fa-code"></i>
+                </a>
+                <a href="https://github.com/KanmaniSamy" target="_blank">
+                    <i class="fas fa-code"></i>
+                </a>
+                <a href="mailto:kanmanisamy1305@gmail.com">
+                    <i class="far fa-envelope"></i>
+                </a>
+                <a href="tel:9489271025">
+                    <i class="fas fa-phone"></i>
+                </a>
+            </div>
+            <a href="Kanmani_M (1) (1).pdf" download class="btn btn-resume" style="margin: 0 auto 30px; display: inline-flex;">
+                <i class="fas fa-download"></i> Download Resume
+            </a>
+            <p class="copyright">© 2025 Kanmani M. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send the form data to a server
+            // For this example, we'll just show an alert
+            alert(`Thank you, ${name}! Your message has been sent. I'll get back to you soon.`);
+            
+            // Reset form
+            contactForm.reset();
+        });
+        
+        // Create floating elements
+        function createFloatingElements() {
+            const colors = ['rgba(124, 77, 255, 0.1)', 'rgba(179, 136, 255, 0.1)', 'rgba(255, 128, 171, 0.1)'];
+            const shapes = ['circle', 'square', 'triangle'];
+            
+            for (let i = 0; i < 15; i++) {
+                const floating = document.createElement('div');
+                floating.classList.add('floating');
+                
+                // Random size between 30 and 100px
+                const size = Math.random() * 70 + 30;
+                
+                // Random position
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                
+                // Random color
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Random animation duration and delay
+                const duration = Math.random() * 10 + 5;
+                const delay = Math.random() * 5;
+                
+                floating.style.width = `${size}px`;
+                floating.style.height = `${size}px`;
+                floating.style.left = `${left}%`;
+                floating.style.top = `${top}%`;
+                floating.style.backgroundColor = color;
+                floating.style.animationDuration = `${duration}s`;
+                floating.style.animationDelay = `${delay}s`;
+                
+                // Random shape
+                const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                if (shape === 'square') {
+                    floating.style.borderRadius = '10px';
+                } else if (shape === 'triangle') {
+                    floating.style.clipPath = 'polygon(50% 0%, 0% 100%, 100% 100%)';
+                    floating.style.backgroundColor = 'transparent';
+                    floating.style.borderLeft = `${size/2}px solid transparent`;
+                    floating.style.borderRight = `${size/2}px solid transparent`;
+                    floating.style.borderBottom = `${size}px solid ${color}`;
+                }
+                
+                document.body.appendChild(floating);
+            }
+        }
+        
+        // Call the function when the page loads
+        window.addEventListener('load', createFloatingElements);
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
